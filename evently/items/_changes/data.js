@@ -1,11 +1,15 @@
 function(data) {
   // $.log(data)
-  var p;
+  var d;
   return {
     items : data.rows.map(function(r) {
-      p = r.value.profile;
-      p.message = r.value.message;
-      return p;
+      r.value.tags = r.value.tags.split(', ').map(function(t) {
+        return {
+          tag : t,
+          uri : "#/tag/"+encodeURIComponent(t)
+        };
+      });
+      return r.value;
     })
-  }
-};
+  };
+}
