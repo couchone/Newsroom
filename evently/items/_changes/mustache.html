@@ -4,6 +4,9 @@
     <li>
       <h4><a href="{{url}}">{{title}}</a></h4>
       <p class="by"><em>about <span class="date">{{created_at}}</span></em> by <strong>{{author}}{{#source}} - {{source}}{{/source}}</strong></p>
+      {{#image_url}}
+      <img src="{{image_url}}">
+      {{/image_url}}
       <blockquote>{{quote}}</blockquote>
       <p>{{desc}}</p>
       <p>
