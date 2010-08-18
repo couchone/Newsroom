@@ -13,6 +13,7 @@
     <div id="items"></div>
 
     <div id="sidebar">
+      <div id="tags"></div>
       <h3>View:</h3>
       <ul>
         <a href="#/tags">Tags</a>
@@ -28,6 +29,7 @@
       $("#profile").evently("profile", app);
       $.evently.connect("#account","#profile", ["loggedIn","loggedOut"]);
       $("#items").evently("items", app);
+      $("#tags").evently("tags", app);
     });
   </script>
 </html>
