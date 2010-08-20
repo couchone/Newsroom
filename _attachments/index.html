@@ -25,11 +25,22 @@
   <script src="vendor/couchapp/loader.js"></script>
   <script type="text/javascript" charset="utf-8">
     $.couch.app(function(app) {
-      $("#account").evently("account", app);
+      document.onkeydown = function(event) {
+        var keyCode = event.keyCode;
+        if(event.shiftKey && event.ctrlKey && keyCode == 76) { // ctrl-shift-L
+          $("#account").evently("account", app);
+          $.evently.connect("#account","#profile", ["loggedIn","loggedOut"]);
+        }
+      };
       $("#profile").evently("profile", app);
-      $.evently.connect("#account","#profile", ["loggedIn","loggedOut"]);
-      $("#items").evently("items", app);
+      var items = app.ddoc.evently.items;
+      items.tags = $.extend(true, {}, items.all, items.tags);
+      $("#items").evently(items, app);
       $("#tags").evently("tags", app);
+      $.pathbinder.begin("/");
+    },{
+      db : "press",
+      design : "newsroom"
     });
   </script>
 </html>
